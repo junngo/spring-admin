@@ -3,13 +3,14 @@ package org.junngo.admin.domain.orderDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.junngo.admin.domain.item.Item;
+import org.junngo.admin.domain.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@ToString(exclude = {"user", "item"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -22,7 +23,11 @@ public class OrderDetail {
 
     private LocalDateTime orderAt;
 
-    private Long userId;
+//    N : 1
+    @ManyToOne
+    private User user;
 
-    private Long itemId;
+//    N : 1
+    @ManyToOne
+    private Item item;
 }

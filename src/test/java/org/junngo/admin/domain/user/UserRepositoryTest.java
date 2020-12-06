@@ -47,6 +47,10 @@ public class UserRepositoryTest {
         findUser.ifPresent(selectUser -> {
             System.out.println(selectUser);
             System.out.println(selectUser.getEmail());
+
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                System.out.println(detail.getItem());
+            });
         });
     }
 

@@ -40,7 +40,7 @@ public class OrderDetailRepositoryTest {
         user.setCreatedBy("test");
         User newUser = userRepository.save(user);
 
-        orderDetail.setUserId(newUser.getId());
+        orderDetail.setUser(newUser);
 
 
         Item item = new Item();
@@ -49,7 +49,7 @@ public class OrderDetailRepositoryTest {
         item.setContent("Samsung Laptop");
 
         Item newItem = itemRepository.save(item);
-        orderDetail.setItemId(newItem.getId());
+        orderDetail.setItem(newItem);
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
         Assert.assertNotNull(newOrderDetail);
