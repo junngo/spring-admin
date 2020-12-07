@@ -1,25 +1,23 @@
-package org.junngo.admin.domain.user;
+package org.junngo.admin.domain.adminUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.junngo.admin.domain.orderDetail.OrderDetail;
-import org.junngo.admin.domain.orderGroup.OrderGroup;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.List;
 
-@ToString(exclude = {"orderGroup"})
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-public class User {
+public class AdminUser {
 
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private Long id;
 
     private String account;
@@ -28,9 +26,13 @@ public class User {
 
     private String status;
 
-    private String email;
+    private String role;
 
-    private String phoneNumber;
+    private LocalDateTime lastLoginAt;
+
+    private LocalDateTime passwordUpdatedAt;
+
+    private Integer loginFailCount;
 
     private LocalDateTime registeredAt;
 
@@ -43,9 +45,4 @@ public class User {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
-//    User 1 : N OrderGroup
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
-    private List<OrderGroup> orderGroupList;
-
 }

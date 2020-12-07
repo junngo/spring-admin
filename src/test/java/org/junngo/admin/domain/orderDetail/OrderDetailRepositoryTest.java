@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @RunWith(SpringRunner.class)
@@ -20,38 +21,22 @@ public class OrderDetailRepositoryTest {
     @Autowired
     OrderDetailRepository orderDetailRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-
     @Test
     public void create() {
+
         OrderDetail orderDetail = new OrderDetail();
-        orderDetail.setOrderAt(LocalDateTime.now());
 
-
-        User user = new User();
-        user.setAccount("test");
-        user.setEmail("test@gmail.com");
-        user.setPhoneNumber("010-1234-5678");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("test");
-        User newUser = userRepository.save(user);
-
-        orderDetail.setUser(newUser);
-
-
-        Item item = new Item();
-        item.setName("Laptop");
-        item.setPrice(100000);
-        item.setContent("Samsung Laptop");
-
-        Item newItem = itemRepository.save(item);
-        orderDetail.setItem(newItem);
+        orderDetail.setStatus("WAITING");
+        orderDetail.setArrivalDate(LocalDateTime.now().plusDays(2));
+        orderDetail.setQuantity(1);
+        orderDetail.setTotalPrice(BigDecimal.valueOf(900000));
+//        orderDetail.setOrderGroupId(1L);
+//        orderDetail.setItemId(1L);
+        orderDetail.setCreatedAt(LocalDateTime.now());
+        orderDetail.setCreatedBy("AdminServer");
 
         OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
+
         Assert.assertNotNull(newOrderDetail);
     }
 }

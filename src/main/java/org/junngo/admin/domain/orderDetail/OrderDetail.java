@@ -5,12 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.junngo.admin.domain.item.Item;
+import org.junngo.admin.domain.orderGroup.OrderGroup;
 import org.junngo.admin.domain.user.User;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@ToString(exclude = {"user", "item"})
+@ToString(exclude = {"orderGroup", "item"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -21,13 +23,35 @@ public class OrderDetail {
     @Id
     private Long id;
 
-    private LocalDateTime orderAt;
+    private String status;
 
-//    N : 1
+    private LocalDateTime arrivalDate;
+
+    private Integer quantity;
+
+    private BigDecimal totalPrice;
+
+    private LocalDateTime createdAt;
+
+    private String createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private String updatedBy;
+
+//  OrderDetail N : 1 OrderGroup
     @ManyToOne
-    private User user;
+    private OrderGroup orderGroup;
 
-//    N : 1
+//  OrderDetail N : 1 Item
     @ManyToOne
     private Item item;
+
+////    N : 1
+//    @ManyToOne
+//    private User user;
+//
+////    N : 1
+//    @ManyToOne
+//    private Item item;
 }

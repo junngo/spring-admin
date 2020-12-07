@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -19,12 +20,18 @@ public class ItemRepositoryTest {
     @Test
     public void create() {
         Item item = new Item();
+        item.setStatus("UNREGISTERED");
         item.setName("Laptop");
+        item.setTitle("Samsung Laptop A100");
+        item.setContent("New Samsung Laptop");
         item.setPrice(100000);
-        item.setContent("Samsung Laptop");
+        item.setBrandName("Samsung");
+        item.setRegisteredAt(LocalDateTime.now());
+        item.setCreatedAt(LocalDateTime.now());
+        item.setCreatedBy("Partner01");
+//        item.setPartnerId(1L);
 
         Item newItem = itemRepository.save(item);
-
         Assert.assertNotNull(newItem);
     }
 
