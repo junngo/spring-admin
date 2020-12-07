@@ -1,20 +1,26 @@
 package org.junngo.admin.domain.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.junngo.admin.domain.orderDetail.OrderDetail;
 import org.junngo.admin.domain.orderGroup.OrderGroup;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@ToString(exclude = {"orderGroup"})
+@ToString(exclude = {"orderGroupList"})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Accessors(chain = true)
+@Builder
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class User {
 
@@ -36,12 +42,16 @@ public class User {
 
     private LocalDateTime unregisteredAt;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @LastModifiedBy
     private String updatedBy;
 
 //    User 1 : N OrderGroup

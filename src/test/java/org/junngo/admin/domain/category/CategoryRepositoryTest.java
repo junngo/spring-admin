@@ -25,13 +25,13 @@ public class CategoryRepositoryTest {
         LocalDateTime createdAt = LocalDateTime.now();
         String createdBy = "AdminServer";
 
-        Category category = new Category();
+        Categories category = new Categories();
         category.setType(type);
         category.setTitle(title);
         category.setCreatedAt(createdAt);
         category.setCreatedBy(createdBy);
 
-        Category newCategory = categoryRepository.save(category);
+        Categories newCategory = categoryRepository.save(category);
 
         Assert.assertNotNull(newCategory);
         Assert.assertEquals(newCategory.getType(), type);
@@ -47,15 +47,15 @@ public class CategoryRepositoryTest {
         LocalDateTime createdAt = LocalDateTime.now();
         String createdBy = "AdminServer";
 
-        Category category = new Category();
+        Categories category = new Categories();
         category.setType(type);
         category.setTitle(title);
         category.setCreatedAt(createdAt);
         category.setCreatedBy(createdBy);
 
-        Category newCategory = categoryRepository.save(category);
+        Categories newCategory = categoryRepository.save(category);
 
-        Optional<Category> findCategory= categoryRepository.findByType(type);
+        Optional<Categories> findCategory= categoryRepository.findByType(type);
 
         findCategory.ifPresent( c -> {
             System.out.println(c);

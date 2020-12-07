@@ -1,9 +1,8 @@
-package org.junngo.admin.domain.partner;
+package org.junngo.admin.domain.category;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.junngo.admin.domain.category.Categories;
-import org.junngo.admin.domain.item.Item;
+import org.junngo.admin.domain.partner.Partner;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,37 +13,23 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@ToString(exclude = {"itemList", "categories"})
+@ToString(exclude = {"partnerList"})
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Accessors(chain = true)
 @Builder
 @Entity
-public class Partner {
+public class Categories {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String type;
 
-    private String status;
-
-    private String address;
-
-    private String callCenter;
-
-    private String partnerNumber;
-
-    private String businessNumber;
-
-    private String ceoName;
-
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
+    private String title;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -58,12 +43,7 @@ public class Partner {
     @LastModifiedBy
     private String updatedBy;
 
-//    Partner N : 1 Category
-    @ManyToOne
-    private Categories categories;
-
-//    Partner 1 : N Item
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "partner")
-    private List<Item> itemList;
-
+    // Category 1 : N Partner
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categories")
+    private List<Partner> partnerList;
 }

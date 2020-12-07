@@ -39,8 +39,6 @@ public class UserRepositoryTest {
         String email = "test@gmail.com";
         String phoneNumber = "010-1234-5678";
         LocalDateTime registeredAt = LocalDateTime.now();
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
 
         User user = new User();
         user.setAccount(account);
@@ -49,10 +47,10 @@ public class UserRepositoryTest {
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
-        user.setCreatedAt(createdAt);
-        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
+
+        User u = User.builder().account(account).password(password).build();
 
         System.out.println(newUser);
         Assert.assertNotNull(newUser);

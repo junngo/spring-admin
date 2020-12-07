@@ -1,12 +1,15 @@
 package org.junngo.admin.domain.orderDetail;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.Accessors;
 import org.junngo.admin.domain.item.Item;
 import org.junngo.admin.domain.orderGroup.OrderGroup;
 import org.junngo.admin.domain.user.User;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,6 +19,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EntityListeners(AuditingEntityListener.class)
+@Accessors(chain = true)
+@Builder
 @Entity
 public class OrderDetail {
 
@@ -31,12 +37,16 @@ public class OrderDetail {
 
     private BigDecimal totalPrice;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @LastModifiedBy
     private String updatedBy;
 
 //  OrderDetail N : 1 OrderGroup
