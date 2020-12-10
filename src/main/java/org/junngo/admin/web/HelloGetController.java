@@ -1,6 +1,7 @@
 package org.junngo.admin.web;
 
 
+import org.junngo.admin.domain.network.Header;
 import org.junngo.admin.web.dto.MultiParamDto;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,5 +31,11 @@ public class HelloGetController {
     @GetMapping("/getParamRetJson")
     public MultiParamDto getParamRetJson(MultiParamDto multiParamDto) {
         return multiParamDto;
+    }
+
+    @GetMapping("/getHeader")
+    public Header getHeader(Header header) {
+//      {"resultCode":"OK", "description":"OK"}
+        return Header.builder().resultCode("OK").description("OK").build();
     }
 }
