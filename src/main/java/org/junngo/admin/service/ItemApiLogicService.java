@@ -8,7 +8,9 @@ import org.junngo.admin.domain.network.response.ItemApiResponse;
 import org.junngo.admin.domain.partner.PartnerRepository;
 import org.junngo.admin.web.api.CrudInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ItemApiLogicService implements CrudInterface<ItemApiRequest, ItemApiResponse> {
 
     @Autowired
