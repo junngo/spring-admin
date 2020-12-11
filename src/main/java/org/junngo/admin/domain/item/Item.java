@@ -2,6 +2,7 @@ package org.junngo.admin.domain.item;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.junngo.admin.domain.enumclass.ItemStatus;
 import org.junngo.admin.domain.orderDetail.OrderDetail;
 import org.junngo.admin.domain.partner.Partner;
 import org.springframework.data.annotation.CreatedBy;
@@ -29,7 +30,8 @@ public class Item {
     @Id
     private Long id;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ItemStatus status;
 
     private String name;
 

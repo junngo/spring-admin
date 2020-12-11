@@ -1,5 +1,6 @@
 package org.junngo.admin.service;
 
+import org.junngo.admin.domain.enumclass.UserStatus;
 import org.junngo.admin.domain.network.Header;
 import org.junngo.admin.domain.network.request.UserApiRequest;
 import org.junngo.admin.domain.network.response.UserApiResponse;
@@ -30,7 +31,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .email(userApiRequest.getEmail())
                 .registeredAt(LocalDateTime.now())

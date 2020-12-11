@@ -2,6 +2,7 @@ package org.junngo.admin.domain.user;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.junngo.admin.domain.enumclass.UserStatus;
 import org.junngo.admin.domain.orderDetail.OrderDetail;
 import org.junngo.admin.domain.orderGroup.OrderGroup;
 import org.springframework.data.annotation.CreatedBy;
@@ -32,7 +33,8 @@ public class User {
 
     private String password;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;  // REGISTERED / UNREGISTERED
 
     private String email;
 

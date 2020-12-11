@@ -2,6 +2,7 @@ package org.junngo.admin.domain.orderGroup;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.junngo.admin.domain.enumclass.OrderType;
 import org.junngo.admin.domain.orderDetail.OrderDetail;
 import org.junngo.admin.domain.user.User;
 import org.springframework.data.annotation.CreatedBy;
@@ -31,7 +32,8 @@ public class OrderGroup {
 
     private String status;
 
-    private String orderType;   // 주문의 형태: 일괄 / 개별
+    @Enumerated(EnumType.STRING)
+    private OrderType orderType;   // 주문의 형태: 일괄 / 개별
 
     private String revAddress;
 
