@@ -1,5 +1,6 @@
 package org.junngo.admin.web.api;
 
+import org.junngo.admin.domain.item.Item;
 import org.junngo.admin.domain.network.request.ItemApiRequest;
 import org.junngo.admin.domain.network.response.ItemApiResponse;
 import org.junngo.admin.service.ItemApiLogicService;
@@ -11,15 +12,15 @@ import javax.annotation.PostConstruct;
 
 @RequestMapping("/api/item")
 @RestController
-public class ItemApiController extends CrudController<ItemApiRequest, ItemApiResponse> {
+public class ItemApiController extends CrudController<ItemApiRequest, ItemApiResponse, Item> {
 
-    @Autowired
-    private ItemApiLogicService itemApiLogicService;
-
-    @PostConstruct
-    public void init() {
-        this.baseService = itemApiLogicService;
-    }
+//    @Autowired
+//    private ItemApiLogicService itemApiLogicService;
+//
+//    @PostConstruct
+//    public void init() {
+//        this.baseService = itemApiLogicService;
+//    }
 
 
 //    @Override
